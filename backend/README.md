@@ -1,98 +1,172 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+Distributed File Storage and Sharing System
+This project is a full-stack application that provides a distributed file storage and sharing solution. It allows users to upload large files, which are then split into smaller chunks, stored, and can be reassembled for download. Files can be easily shared via a secure, auto-generated QR code.
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+✨ Features
+User Authentication: Secure user registration and login using JWT (JSON Web Tokens).
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Large File Uploads: A drag-and-drop interface to upload large files efficiently.
 
-## Description
+File Chunking: The backend automatically splits files into 5 MB chunks for distributed storage.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Secure File Sharing: Generate a time-limited, secure download link and a corresponding QR code for easy sharing.
 
-## Project setup
+Health Check Endpoint: A /health endpoint to monitor the service status.
 
-```bash
-$ npm install
-```
+Cross-Origin Resource Sharing (CORS): Configured to allow communication between the frontend and backend.
 
-## Compile and run the project
+🚀 Performance Metrics
+In a local test environment, the system demonstrated efficient handling of large files:
 
-```bash
-# development
-$ npm run start
+Upload: A 36 MB file was successfully chunked and uploaded in 6.4 seconds.
 
-# watch mode
-$ npm run start:dev
+Download: The same 36 MB file was reassembled and downloaded in 1.57 seconds.
 
-# production mode
-$ npm run start:prod
-```
+🛠️ Tech Stack
+Backend: NestJS (TypeScript)
 
-## Run tests
+Frontend: React (TypeScript)
 
-```bash
-# unit tests
-$ npm run test
+Database: MongoDB Atlas
 
-# e2e tests
-$ npm run test:e2e
+Authentication: Passport.js with JWT Strategy
 
-# test coverage
-$ npm run test:cov
-```
+File Handling: Multer for initial uploads, Node.js Streams for chunking.
 
-## Deployment
+QR Code Generation: qrcode library
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+📂 Project Structure
+The project is organized as a monorepo with separate directories for the backend and frontend.
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+distributed-file-system/
+├── backend/                  # NestJS Application
+│   ├── src/
+│   ├── .env
+│   └── package.json
+└── frontend/                 # React Application
+    ├── src/
+    ├── .env.local
+    └── package.json
 
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
-```
+⚙️ Setup and Installation
+Prerequisites
+Node.js (v18 or later)
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+npm
 
-## Resources
+A MongoDB Atlas account and a connection string
 
-Check out a few resources that may come in handy when working with NestJS:
+1. Backend Setup
+# Navigate to the backend directory
+cd backend
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+# Install dependencies
+npm install
 
-## Support
+# Create a .env file in the backend root and add your variables
+# See .env.example for required fields
+cp .env.example .env
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+MONGO_URI=
+JWT_SECRET=THIS_IS_A_VERY_SECRET_KEY
+PORT=3001
 
-## Stay in touch
+# Start the development server
+npm run start:dev
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+The backend will be running on http://localhost:3001.
 
-## License
+2. Frontend Setup
+# Navigate to the frontend directory from the root
+cd frontend
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+# Install dependencies
+npm install
+
+# Create a .env.local file in the frontend root
+# Update REACT_APP_API_BASE_URL to point to your backend
+cp .env.local.example .env.local
+
+REACT_APP_API_BASE_URL=http://192.168.29.105:3001
+
+# Start the development server
+npm start
+
+The frontend will be running on http://localhost:3000.
+
+📡 API Endpoints
+Method
+
+Endpoint
+
+Protection
+
+Description
+
+POST
+
+/auth/register
+
+Public
+
+Registers a new user.
+
+POST
+
+/auth/login
+
+Public
+
+Authenticates a user and returns a JWT.
+
+POST
+
+/files/upload
+
+JWT Guard
+
+Uploads a file, splits it into chunks, and stores metadata.
+
+GET
+
+/files/download/:fileId
+
+Public
+
+Reassembles and streams a file for download.
+
+GET
+
+/files/download-by-token
+
+JWT
+
+Downloads a file using a short-lived token from a share link.
+
+GET
+
+/files/share/:fileId
+
+JWT Guard
+
+Generates a QR code for a shareable download link.
+
+GET
+
+/health
+
+Public
+
+Checks the health status of the application.
+
+Usage
+Navigate to http://localhost:3000 or IPV4 address in your browser.
+
+Create an account and log in.
+
+On the main page, drag and drop a file to upload it.
+
+Once the upload is complete, a QR code will be displayed.
+
+Scan the QR code with another device (e.g., a phone on the same Wi-Fi network) to download the file.
+
+This project was created on September 14, 2025.
